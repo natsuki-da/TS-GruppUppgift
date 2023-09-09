@@ -13,12 +13,6 @@ const Post: React.FC = () => {
     id: 0,
     title: '',
     content: '',
-    comments: {
-      id: 0,
-      content: '',
-      userName: '',
-    },
-
   });
   
   /* Samma koden som ovan fast utan React.FC
@@ -53,15 +47,14 @@ const Post: React.FC = () => {
       e.preventDefault(); // Prevent the default form submission behavior
       
       if (newPost.title && newPost.content) {
-        const newPostData = { ...newPost, id: Date.now() };
+        const newPostData = { ...newPost, id: Date.now(), comments: [] };
         const updatedPosts = [...posts, newPostData];
   
         // Save the updated posts to localStorage
         localStorage.setItem('posts', JSON.stringify(updatedPosts));
         setPosts(updatedPosts);
         console.log(updatedPosts);
-        setNewPost({ id: 0, title: '', content: '', comments:{id: 0, content: '', userName: '',}
-      });
+        setNewPost({ id: 0, title: '', content: ''});
         
       }
     };

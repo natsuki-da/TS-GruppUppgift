@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-type PostData = {
-  id: number;
-  title: string;
-  content: string;
-};
+// interface PostData {
+//   id: number;
+//   title: string;
+//   content: string;
+//   comments: CommentData[];
+// };
 
 const Post: React.FC = () => {
   const [posts, setPosts] = useState<PostData[]>([]);
@@ -12,6 +13,12 @@ const Post: React.FC = () => {
     id: 0,
     title: '',
     content: '',
+    comments: {
+      id: 0,
+      content: '',
+      userName: '',
+    },
+
   });
   
   /* Samma koden som ovan fast utan React.FC
@@ -51,19 +58,19 @@ const Post: React.FC = () => {
   
         // Save the updated posts to localStorage
         localStorage.setItem('posts', JSON.stringify(updatedPosts));
-  
         setPosts(updatedPosts);
         console.log(updatedPosts);
-        setNewPost({ id: 0, title: '', content: '' });
+        setNewPost({ id: 0, title: '', content: '', comments:{id: 0, content: '', userName: '',}
+      });
         
       }
     };
 
     return (
-      <div>
-        <h1>Create your post here:</h1>
+      <div className="card">
+        <h2>Ask anything here:</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='title'>
             <label htmlFor="title">Title:</label>
             <input
               type="text"
@@ -73,7 +80,7 @@ const Post: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          <div className="content">
             <label htmlFor="content">Content:</label>
             <textarea
               id="content"
@@ -82,52 +89,10 @@ const Post: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <input type="submit" value="Create Post"></input>
+          <input type="submit" value="Create Post" className="inputButton"></input>
         </form>
       </div>
     );
   };
 
   export default Post;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-import React from 'react';
-
-type PostProps = {
-  title: string;
-  category: string;
-  creationDate: string;
-  description: string;
-  name: string; // Add name and username props
-  userName: string;
-};
-
-const Post: React.FC<PostProps> = ({ title, description, category, creationDate, name, userName }) => {
-  return (
-    <div className="post">
-      <h2>{title}</h2>
-      <p>Category: {category}</p>
-      <p>Description: {description}</p>
-      <p>Created at: {creationDate}</p>
-      <p>Name: {name}</p> 
-      <p>Username: {userName}</p> 
-    </div>
-  );
-};
-
-
-export default Post;
-*/

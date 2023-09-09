@@ -27,11 +27,16 @@ interface CommentData {
     id: number;
     content: string;
     userName: string;
+    postId: number;
   };
 
 interface PostData {
     id: number;
     title: string;
     content: string;
-    comments: CommentData;
   };
+
+  interface PostDataProps{
+    post: PostData;
+  }
+  

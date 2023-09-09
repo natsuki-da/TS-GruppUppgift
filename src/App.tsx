@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThreadListView from "./pages/ThreadListView"
-import Post from './components/Post';
+import ThreadCreationView from './pages/ThreadCreationView';
+import ThreadDetailView from './pages/ThreadDetailView';
+// import Post from './components/Post';
 
 const App = () => {
  return(
     <Router>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/Post" element={<Post />} />
-          <Route path="/ThreadListView" element={<ThreadListView />} />
+          <Route path="/" element={<ThreadCreationView />} />
+          <Route path="/List" element={<ThreadListView />} />
+          <Route path="/Detail/:id" element={<ThreadDetailView />} />
         </Routes>
       </Router>
  );   
